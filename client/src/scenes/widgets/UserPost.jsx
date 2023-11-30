@@ -28,7 +28,7 @@ const UserPost = ({ pic_path }) => {
             formData.append("picture", image);
             formData.append("pic_path", image.name);
         }
-        const response = await fetch(`http://localhost:3001/posts`, {
+        const response = await fetch(`https://social-media-web-app-auz4.onrender.com/posts`, {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` },
             body: formData,

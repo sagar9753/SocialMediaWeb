@@ -23,7 +23,7 @@ const SinglePost = ({ postId, postuserId, name, description, location, pic_path,
 
   const patchLike = async () => {
     console.log(postId);
-    const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+    const response = await fetch(`https://social-media-web-app-auz4.onrender.com/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,

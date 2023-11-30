@@ -19,7 +19,7 @@ const AllPosts = ({ userId, isProfile = false }) => {
         dispatch(setPosts({ posts: data }));
     }
     const getUserPosts = async () => {
-        const res = await fetch(`http://localhost:3001/posts/${userId}/posts`,
+        const res = await fetch(`https://social-media-web-app-auz4.onrender.com/posts/${userId}/posts`,
             {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },
