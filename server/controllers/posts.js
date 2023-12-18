@@ -19,7 +19,6 @@ export const createPost = async(req,res) => {
             comments : []
         })
         await newPost.save();
-        console.log("jdhjdgf");
         const post = await Post.find();
         res.status(201).json(post); 
     }
@@ -48,6 +47,18 @@ export const getUserPosts = async(req,res) => {
     }
     catch(err){
         res.status(404).json({message : err.message});
+    }
+}
+export const deletePost = async(req,res) => {
+    try{
+        const {userId,id} = req.params; 
+        await Post.deleteOne({_id :id});
+        const post = await Post.find({userId});
+        res.status(201).json(post);
+
+    }
+    catch(err){
+        res.status(403).json({message : err.message});
     }
 }
 

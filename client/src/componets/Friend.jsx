@@ -1,4 +1,5 @@
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
     Box, IconButton, Typography, useTheme
 } from "@mui/material";
@@ -27,7 +28,7 @@ const Friend = ({ friendId, name, subtitle, userPic_path }) => {
     const patchFriend = async () => {
         // console.log(friends);
         const response = await fetch(
-            `https://social-media-web-app-auz4.onrender.com/users/${_id}/${friendId}`,
+            `${process.env.REACT_APP_BACKEND}/users/${_id}/${friendId}`,
             {
                 method: "PATCH",
                 headers: {
@@ -50,13 +51,13 @@ const Friend = ({ friendId, name, subtitle, userPic_path }) => {
                     navigate(0);
                 }}
                 >
-                    <Typography color={main} variant="h5"               fontWeight="500"
-                    sx={{
-                        "&:hover":{
-                            color:palette.primary.light,
-                            cursor:"pointer"
-                        }
-                    }}
+                    <Typography color={main} variant="h5" fontWeight="500"
+                        sx={{
+                            "&:hover": {
+                                color: palette.primary.light,
+                                cursor: "pointer"
+                            }
+                        }}
                     >
                         {name}
                     </Typography>
@@ -65,14 +66,15 @@ const Friend = ({ friendId, name, subtitle, userPic_path }) => {
                     </Typography>
                 </Box>
             </FlexBetween>
+            
             <IconButton
-                onClick={()=>patchFriend()}
-                sx={{ backgraoundColor : primaryLight,padding:"0.6rem" }}
+                onClick={() => patchFriend()}
+                sx={{ backgraoundColor: primaryLight, padding: "0.6rem" }}
             >
                 {isFriend ? (
-                    <PersonRemoveOutlined sx={{ color:primaryDark }} />
+                    <PersonRemoveOutlined sx={{ color: primaryDark }} />
                 ) : (
-                    <PersonAddOutlined sx={{ color:primaryDark }} />
+                    <PersonAddOutlined sx={{ color: primaryDark }} />
                 )}
             </IconButton>
         </FlexBetween>

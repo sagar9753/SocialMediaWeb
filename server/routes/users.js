@@ -11,6 +11,6 @@ router.get("/:id/friends",check_token,getUserFriends);
 // Update
 router.patch("/:id/:friendId", addRemoveFriend);
 
-
+  
 export default router;
 

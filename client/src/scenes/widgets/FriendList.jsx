@@ -14,7 +14,7 @@ const FriendList = ({userId}) => {
 
     const getFriends = async () => {
         const res = await fetch(
-            `https://social-media-web-app-auz4.onrender.com/users/${userId}/friends`,
+            `${process.env.REACT_APP_BACKEND}/users/${userId}/friends`,
             {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },
@@ -40,7 +40,7 @@ const FriendList = ({userId}) => {
                 Friend List
             </Typography>
             <Box display="flex" flexDirection="column" gap="1.5rem">
-                {friends.map((friend) => (
+                {Object.values(friends).map((friend) => (
                     <Friend
                         key={friend._id}
                         friendId={friend._id}

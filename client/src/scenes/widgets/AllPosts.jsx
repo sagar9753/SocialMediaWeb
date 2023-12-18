@@ -1,16 +1,16 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setPosts } from "state"
 import SinglePost from "./SinglePost"
-import { Box } from "@mui/material"
 
-const AllPosts = ({ userId, isProfile = false }) => {
+const AllPosts = ({ userId,isProfile=false }) => {
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.posts);
+    const post = useSelector((state) => state.post);
     const token = useSelector((state) => state.token);
 
     const getPosts = async () => {
-        const res = await fetch("http://localhost:3001/posts",
+        const res = await fetch(`${process.env.REACT_APP_BACKEND}/posts`,  
             {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },
@@ -19,7 +19,7 @@ const AllPosts = ({ userId, isProfile = false }) => {
         dispatch(setPosts({ posts: data }));
     }
     const getUserPosts = async () => {
-        const res = await fetch(`https://social-media-web-app-auz4.onrender.com/posts/${userId}/posts`,
+        const res = await fetch(`${process.env.REACT_APP_BACKEND}/posts/${userId}/posts`,
             {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },
@@ -30,11 +30,13 @@ const AllPosts = ({ userId, isProfile = false }) => {
     useEffect(() => {
         if (isProfile) {
             getUserPosts();
+            console.log("uuuuuu");
         }
         else {
             getPosts();
+            console.log("aaaaa");
         }
-    }, [])
+    }, [post])
     return (
         <>
             {(posts && posts.length > 0) && posts.map(
@@ -53,6 +55,7 @@ const AllPosts = ({ userId, isProfile = false }) => {
                         userPic_path={userPic_path}
                         likes={likes}
                         comments={comments}
+                        isProfile={isProfile}
                     />
                     
                 )

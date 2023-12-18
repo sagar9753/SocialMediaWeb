@@ -36,7 +36,7 @@ const Nabvar = () => {
                         },
                     }}
                 >
-                    Social Media
+                    Sociify
                 </Typography>
                 {isNonMobileScreen && (
                     <FlexBetween backgroundColor={neutralLight} borderRadius="9px" gap="3rem" padding="0 1rem .2rem">
@@ -59,9 +59,7 @@ const Nabvar = () => {
                             )
                         }
                     </IconButton>
-                    <Message sx={{ fontSize: "25px" }} />
-                    <Notifications sx={{ fontSize: "25px" }} />
-                    <Help sx={{ fontSize: "25px" }} />
+                    
                     <FormControl variant="standard" value={fullName}>
                         <Select value={fullName}
                             sx={{

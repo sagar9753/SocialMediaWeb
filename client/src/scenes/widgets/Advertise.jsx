@@ -21,7 +21,7 @@ const Advertise = () => {
                 width="100%"
                 height="auto"
                 alt="advert"
-                src="https://social-media-web-app-auz4.onrender.com/assets/info4.jpeg"
+                src="http://localhost:3001/assets/info4.jpeg"
                 style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
             />
             <Typography color={main}>MikaCosmetics</Typography>

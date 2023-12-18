@@ -1,5 +1,5 @@
 import express from "express";
-import {login} from "../controllers/auth.js";
+import {login,verifyMail} from "../controllers/auth.js";
 
 const router = express.Router();
 
@@ -9,5 +9,7 @@ router.post("/register",(req,res)=>{
 })
 
 router.post("/login",login);
+
+router.get("/verify-email",verifyMail)
 
 export default router; 

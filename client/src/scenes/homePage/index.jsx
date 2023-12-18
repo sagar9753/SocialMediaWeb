@@ -3,14 +3,18 @@ import UserProfile from "scenes/widgets/UserProfile";
 import UserPost from "scenes/widgets/UserPost";
 
 import { Box, useMediaQuery } from "@mui/material";
-import { useSelector } from "react-redux/es/hooks/useSelector";
 import AllPosts from "scenes/widgets/AllPosts";
 import Advertise from "scenes/widgets/Advertise";
 import FriendList from "scenes/widgets/FriendList";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const HomePage = () => {
     const isNonMobileScreen = useMediaQuery("(min-width:1000px)");
     const { _id, pic_path } = useSelector((state) => state.user);
+    const pr = useSelector((state)=>state.isProfile)
+    
+
     return (
         <Box>
             <Navbar />

@@ -11,12 +11,13 @@ import AllPosts from "scenes/widgets/AllPosts";
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
-    const { userId } = useParams();
+    const { userId } = useParams();   
     const token = useSelector((state) => state.token);
+    const posts = useSelector((state) => state.posts);
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
     const getUser = async () => {
-        const response = await fetch(`https://social-media-web-app-auz4.onrender.com/users/${userId}`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${userId}`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
         });
@@ -26,13 +27,16 @@ const ProfilePage = () => {
 
     useEffect(() => {
         getUser();
-    }, []);
+        // dispatch(setIsProfile({ isProfile: true }));
+        console.log("mmmmmmm");
+    }, [posts]);
 
     if (!user)
         return null;
 
     return (
         <Box>
+            {console.log("Rerenderrrrrrrrrr")}
             <Navbar />
             <Box
                 width="100%"
@@ -42,7 +46,7 @@ const ProfilePage = () => {
                 justifyContent="center"
             >
                 <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
-                    <UserProfile userId={userId} pic_path={user.pic_path} />
+                    <UserProfile userId={userId} pic_path={user.pic_path} isProfile />
                     <Box m="2rem 0" />
                     <FriendList userId={userId} />
                 </Box>
