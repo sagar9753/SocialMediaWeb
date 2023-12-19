@@ -25,6 +25,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.4-lts.1",
     "multer-gridfs-storage": "^4.2.0",
-    "telnet": "^0.0.1"
+    "telnet": "^0.0.1",
+    "nodemailer":"^6.9.7"
   }
 }
