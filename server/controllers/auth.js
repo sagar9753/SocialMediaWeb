@@ -48,7 +48,7 @@ export const register = async (req, res) => {
             subject: 'verifymail -verify your mail',
             html: `<h2>${newUser.firstName} thanks for registration</h2>
                     <h4>Plz verify your mail to continue....</h4>
-                    <a href="http://localhost:3001/auth/verify-email?token=${newUser.emailToken}">Verify Your Mail</a>`
+                    <a href="https://social-media-frontend-ylak.onrender.com/auth/verify-email?token=${newUser.emailToken}">Verify Your Mail</a>`
         }
 
         transporter.sendMail(mailOption, (err, info) => {
