@@ -33,12 +33,7 @@ const userSchema = new mongoose.Schema(
             type : Array,  
             default : []
         },
-        emailToken:{
-            type : String,
-        },
-        isVerified:{
-            type:Boolean,
-        },
+        
         location : String,
         occupation : String,
         viewed_profile : Number,
