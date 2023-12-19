@@ -1,4 +1,4 @@
-import { ChatBubbleOutlineOutlined, FavoriteBorderOutlined, FavoriteOutlined, ShareOutlined } from "@mui/icons-material";
+import { ChatBubbleOutlineOutlined, FavoriteBorderOutlined, FavoriteOutlined } from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box, Divider, IconButton, Typography, useTheme,
@@ -6,10 +6,9 @@ import {
 import FlexBetween from "componets/FlexBetween";
 import Friend from "componets/Friend";
 import ProfileStyle from "componets/ProfileStyle";
-import { useState, useEffect, useCallback } from "react";
+import { useState, } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost, setPosts,setIsProfile } from "state";
-import { useNavigate } from "react-router-dom";
+import { setPost, setPosts } from "state";
 
 const SinglePost = ({ postId, postuserId, name, description, location, pic_path, userPic_path, likes, comments, isProfile=false }) => {
   const [isComments, setIsComments] = useState(false);
@@ -56,7 +55,7 @@ const SinglePost = ({ postId, postuserId, name, description, location, pic_path,
   return (
     <Box>
       <ProfileStyle>
-        <Friend friendId={postuserId} name={name} subtitle={location} userPic_path={userPic_path}
+        <Friend friendId={postuserId} name={name} subtitle={location} userPic_path={userPic_path} isProfile={isProfile}
         />
         <Typography color={main} sx={{ mt: "1rem" }}>
           {description}
@@ -87,7 +86,6 @@ const SinglePost = ({ postId, postuserId, name, description, location, pic_path,
                 <ChatBubbleOutlineOutlined />
               </IconButton>
               <Typography>{comments.length}</Typography>
-              <IconButton><ShareOutlined /></IconButton>
             </FlexBetween>
 
           </FlexBetween>

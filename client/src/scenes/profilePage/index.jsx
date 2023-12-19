@@ -54,8 +54,8 @@ const ProfilePage = () => {
                     flexBasis={isNonMobileScreens ? "42%" : undefined}
                     mt={isNonMobileScreens ? undefined : "2rem"}
                 >
-                    <UserPost pic_path={user.pic_path} />
-                    <Box m="2rem 0" />
+                    {/* <UserPost pic_path={user.pic_path} />
+                    <Box m="2rem 0" /> */}
                     <AllPosts userId={userId} isProfile />
                 </Box>
             </Box>

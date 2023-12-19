@@ -39,7 +39,7 @@ const AllPosts = ({ userId,isProfile=false }) => {
     }, [post])
     return (
         <>
-            {(posts && posts.length > 0) && posts.map(
+            {(posts && posts.length > 0) && posts.slice(0).reverse().map(
                 ({
                     _id, userId, firstName, lastName, description, location, pic_path, userPic_path, likes, comments,
                 }) => (

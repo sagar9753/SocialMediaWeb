@@ -77,13 +77,17 @@ const Form = () => {
         const savedUser = await sendRespose.json();
         onSubmitProps.resetForm();
 
-        if(savedUser.msg !== "Email is Already used"){
-            setPagetype("login");
-        }
-        if (savedUser.msg === "Email is Already used") {
-            dispatch(setMsg({msg:savedUser.msg}))
+        if(savedUser){
+            dispatch(setMsg({ msg: "Verification mail is sent to mail. Plz verify to continue" }))
             setTimeout(() => {
                 dispatch(setMsg({ msg: "" }))
+            }, 5000);
+            setPagetype("login");
+        }
+        if(savedUser.msg === "Email is Already used") {
+            dispatch(setMsg({msg:savedUser.msg}))
+            setTimeout(() => {
+                
             }, 3000);
         }
     }
@@ -110,7 +114,7 @@ const Form = () => {
             );
             navigate("/home")
         }
-        if (loggedIn.msg === "Invalid email or password") {
+        if (loggedIn.msg === "Invalid email or password" || loggedIn.msg === "Plz verify first to continue from your mail box!!!") {
             // toast.error("Please fill in all fields")
             dispatch(setMsg({ msg: loggedIn.msg }))
             setTimeout(() => {

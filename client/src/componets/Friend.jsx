@@ -9,11 +9,12 @@ import { setFriends } from "state";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
 
-const Friend = ({ friendId, name, subtitle, userPic_path }) => {
+const Friend = ({ friendId, name, subtitle, userPic_path ,isProfile=false}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
+    const user = useSelector((state) => state.user);
     const friends = useSelector((state) => state.user.friends);
 
     const { palette } = useTheme();
@@ -66,8 +67,8 @@ const Friend = ({ friendId, name, subtitle, userPic_path }) => {
                     </Typography>
                 </Box>
             </FlexBetween>
-            
-            <IconButton
+            {!isProfile &&
+                <IconButton
                 onClick={() => patchFriend()}
                 sx={{ backgraoundColor: primaryLight, padding: "0.6rem" }}
             >
@@ -77,6 +78,7 @@ const Friend = ({ friendId, name, subtitle, userPic_path }) => {
                     <PersonAddOutlined sx={{ color: primaryDark }} />
                 )}
             </IconButton>
+            }
         </FlexBetween>
     )
 }
