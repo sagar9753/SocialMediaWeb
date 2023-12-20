@@ -77,7 +77,7 @@ const UserPost = ({ pic_path }) => {
                                     sx={{ "&:hover": { cursor: "pointer" } }}
                                 >
                                     <input {...getInputProps()} />
-                                    {image === "null" ? (
+                                    {!image ? (
                                         <p>Add Image Here</p>
                                     ) : (
                                         <FlexBetween>
