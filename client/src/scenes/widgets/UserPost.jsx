@@ -11,7 +11,7 @@ import { setPosts } from "state";
 const UserPost = ({ pic_path }) => {
     const dispatch = useDispatch();
     const [isImage, setIsImage] = useState(false);
-    const [image, setImage] = useState("null");
+    const [image, setImage] = useState(null);
     const [post, setPost] = useState("");
     const { palette } = useTheme();
     const { _id } = useSelector((state) => state.user);
