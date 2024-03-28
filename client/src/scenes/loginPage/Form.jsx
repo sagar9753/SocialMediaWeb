@@ -105,12 +105,12 @@ const Form = () => {
         // console.log(loggedIn.msg);
         onSubmitProps.resetForm();
         // alert(loggedIn.msg)
-        if (loggedIn) {
+        if (loggedIn) { 
             dispatch(
                 setLogin({
                     user: loggedIn.user,
                     token: loggedIn.token,
-                })
+                }),
             );
             navigate("/home")
         }

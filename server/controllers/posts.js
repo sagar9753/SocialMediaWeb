@@ -54,6 +54,7 @@ export const deletePost = async(req,res) => {
         const {userId,id} = req.params; 
         await Post.deleteOne({_id :id});
         const post = await Post.find({userId});
+
         res.status(201).json(post);
 
     }
@@ -82,6 +83,28 @@ export const likePost = async(req,res) =>{
             id,{likes : post.likes},{new:true}
         );
         res.status(200).json(updatePost); 
+    }
+    catch(err){
+        res.status(404).json({message : err.message});
+    }
+}
+export const doComment = async(req,res) =>{
+    try{
+        const { id } = req.params;
+        const { commUser,comment } = req.body;
+        const user = await User.findById(commUser);
+        console.log(user,comment,id);
+        const post = await Post.findById(id);
+
+        
+        await post.comments.push({
+            commUser:user,
+            comment:comment
+        })
+        post.save();
+
+        res.status(200).json(post); 
+        console.log(post.comments);
     }
     catch(err){
         res.status(404).json({message : err.message});

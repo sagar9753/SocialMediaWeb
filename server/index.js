@@ -9,8 +9,6 @@ import dotenv from "dotenv";
 import multer from "multer";
 import { fileURLToPath } from "url";
 
-import User from "./models/User.js";
-import Post from "./models/Post.js";
 import auth_routes from "./routes/auth.js";
 import user_routes from "./routes/users.js"
 import post_routes from "./routes/posts.js";
@@ -58,7 +56,6 @@ app.use("/posts", post_routes);
 
 // Conection with Mongoose--------------------------------  
 
-const URL = `mongodb+srv://sagar9753:sbs&9753@cluster0.ylrsqob.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp`
 const PORT = process.env.PORT || 6000;
 console.log(PORT, process.env.MONGO_URL);
 mongoose.connect(process.env.MONGO_URL, {

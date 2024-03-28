@@ -48,7 +48,7 @@ export const register = async (req, res) => {
             subject: 'verifymail -verify your mail',
             html: `<h2>${newUser.firstName} thanks for registration</h2>
                     <h4>Plz verify your mail to continue....</h4>
-                    <a href="https://social-media-frontend-ylak.onrender.com/auth/verify-email?token=${newUser.emailToken}">Verify Your Mail</a>`
+                    <a href="http://localhost:3001/auth/verify-email?token=${newUser.emailToken}">Verify Your Mail</a>`
         }
 
         transporter.sendMail(mailOption, (err, info) => {
@@ -90,7 +90,7 @@ export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email: email });
-        if (!user)
+        if (!user)  
             return res.status(400).json({ msg: "Invalid email or password" });
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -102,8 +102,9 @@ export const login = async (req, res) => {
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SEC_KRY);
         delete user.password;
-
-        res.status(200).json({ token, user })
+        const curUserPic = user.pic_path;
+        console.log(curUserPic);
+        res.status(200).json({ token, user,curUserPic })
     }
     catch (err) {
         res.status(500).json({ error: err.message });
