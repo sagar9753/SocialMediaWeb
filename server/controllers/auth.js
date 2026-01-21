@@ -4,15 +4,15 @@ import User from "../models/User.js";
 import nodemailer from "nodemailer"
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: "sr982729@gmail.com",
-        pass: "lgyn tyrr krzk wkop"
-    },
-    tls: {
-        rejectUnauthorized: false
-    }
-})
+  host: "smtp.gmail.com",
+  port: 465,        
+  secure: true,     
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS, 
+  },
+  connectionTimeout: 10000, // optional
+});
 
 // Register user
 export const register = async (req, res) => {
@@ -48,7 +48,7 @@ export const register = async (req, res) => {
             subject: 'verifymail -verify your mail',
             html: `<h2>${newUser.firstName} thanks for registration</h2>
                     <h4>Plz verify your mail to continue....</h4>
-                    <a href="http://localhost:3001/auth/verify-email?token=${newUser.emailToken}">Verify Your Mail</a>`
+                    <a href="${process.env.BACKEND}/auth/verify-email?token=${newUser.emailToken}">Verify Your Mail</a>`
         }
 
         transporter.sendMail(mailOption, (err, info) => {
